@@ -13,12 +13,12 @@ public class LoggingAdvisor implements RequestResponseAdvisor {
     @Override
     public AdvisedRequest adviseRequest(AdvisedRequest request, Map<String, Object> context) {
         log.info("request:{},context:{}", request, context);
-        return request;
+        return RequestResponseAdvisor.super.adviseRequest(request, context);
     }
 
     @Override
     public ChatResponse adviseResponse(ChatResponse response, Map<String, Object> context) {
         log.info("response:{},context:{}", response, context);
-        return response;
+        return RequestResponseAdvisor.super.adviseResponse(response, context);
     }
 }
