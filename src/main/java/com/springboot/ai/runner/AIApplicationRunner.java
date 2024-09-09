@@ -2,7 +2,6 @@ package com.springboot.ai.runner;
 
 import com.springboot.ai.AIConfiguration;
 import com.springboot.ai.reader.QATextDocumentReader;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
@@ -12,7 +11,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @Component
 public class AIApplicationRunner implements ApplicationRunner {
 
@@ -34,7 +32,8 @@ public class AIApplicationRunner implements ApplicationRunner {
                 .withSimilarityThreshold(AIConfiguration.CHAT_MEMORY_SIMILARITY_THRESHOLD);
 
         vectorStore.similaritySearch(request).forEach(doc -> {
-            log.info("answer: \n {}", doc.getContent());
+            System.out.println("question: \n" + request.getQuery());
+            System.out.println("answer: \n" + doc.getContent());
         });
     }
 }
