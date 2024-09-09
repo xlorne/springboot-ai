@@ -1,4 +1,4 @@
-# ollama Setting
+# Ollama Setting
 
 ## ollama install
 
