@@ -25,7 +25,10 @@ public class AIApplicationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        long t1 = System.currentTimeMillis();
         vectorStore.write(tokenTextSplitter.transform(new QATextDocumentReader(qaDocs).read()));
+        long t2 = System.currentTimeMillis();
+        System.out.println("Vector store write time: " + (t2 - t1) + " ms");
 
         SearchRequest request = SearchRequest.query("你的兴趣爱好是什么？")
                 .withTopK(AIConfiguration.CHAT_MEMORY_SIMILARITY_TOP_K)
